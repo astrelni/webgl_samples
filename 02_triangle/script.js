@@ -18,10 +18,10 @@ function compileShaderStage(stageType, shaderSource) {
 }
 
 function createShaderProgram(vertexSource, fragmentSource) {
-  vertexShader = compileShaderStage(gl.VERTEX_SHADER, vertexSource);
-  fragmentShader = compileShaderStage(gl.FRAGMENT_SHADER, fragmentSource);
+  const vertexShader = compileShaderStage(gl.VERTEX_SHADER, vertexSource);
+  const fragmentShader = compileShaderStage(gl.FRAGMENT_SHADER, fragmentSource);
 
-  programHandle = gl.createProgram();
+  const programHandle = gl.createProgram();
   gl.attachShader(programHandle, vertexShader);
   gl.attachShader(programHandle, fragmentShader);
   gl.linkProgram(programHandle);
@@ -49,7 +49,8 @@ function makeIdentityShader() {
   `
   const programHandle = createShaderProgram(vertexSource, fragmentSource);
 
-  const positionAttributeLoc = gl.getAttribLocation(programHandle, "vertexPosition");
+  const positionAttributeLoc =
+      gl.getAttribLocation(programHandle, "vertexPosition");
   if (positionAttributeLoc === -1) throw "Could not find attribute location";
 
   return {
@@ -76,7 +77,8 @@ function makeTriangleMesh() {
   return {
     bind: (shader) => {
       gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
-      gl.vertexAttribPointer(shader.attributes.position, 2, gl.FLOAT, false, 0, 0);
+      gl.vertexAttribPointer(
+          shader.attributes.position, 2, gl.FLOAT, false, 0, 0);
       gl.enableVertexAttribArray(shader.attributes.position);
     },
     draw: () => { gl.drawArrays(gl.TRIANGLES, 0, 3); }
