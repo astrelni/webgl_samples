@@ -49,7 +49,7 @@ function getAttributeLocation(programHandle, attributeName) {
 
 function getUniformLocation(programHandle, uniformName) {
   const location = gl.getUniformLocation(programHandle, uniformName);
-  if (location === -1) {
+  if (location === null) {
     throw "Could not find uniform location '" + uniformName + "'";
   }
   return location
