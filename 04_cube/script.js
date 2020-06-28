@@ -202,8 +202,8 @@ function drawLoop(now) {
 
   const modelTransform = mat4.create();
   mat4.translate(modelTransform, modelTransform, [3, 0, 0]);
-  mat4.rotate(modelTransform, modelTransform, rotationAngle, [0, 0, 1]);
-  mat4.rotate(modelTransform, modelTransform, 0.273 * rotationAngle, [0, 1, 0]);
+  mat4.rotateZ(modelTransform, modelTransform, rotationAngle);
+  mat4.rotateY(modelTransform, modelTransform, 0.273 * rotationAngle);
 
   const viewTransform = mat4.create();
   mat4.lookAt(viewTransform,
