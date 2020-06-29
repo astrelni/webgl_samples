@@ -8,6 +8,8 @@ function initGL() {
   });
   if (gl === null) throw "Failed to get GL context";
   gl.enable(gl.DEPTH_TEST);
+  gl.enable(gl.CULL_FACE);
+  gl.cullFace(gl.BACK);
 }
 
 function compileShaderStage(stageType, shaderSource) {
@@ -134,16 +136,16 @@ function makeCubeMesh() {
     -0.5, -0.5, 0.5,         1.0, 1.0, 0.5,
 
     // +Y
-    -0.5, -0.5, -0.5,        0.5, 1.0, 0.5,
-    0.5, -0.5, -0.5,         0.5, 1.0, 0.5,
-    0.5, -0.5, 0.5,          0.5, 1.0, 0.5,
-    -0.5, -0.5, 0.5,         0.5, 1.0, 0.5,
-
-    // -Y
     -0.5, 0.5, -0.5,         0.5, 1.0, 1.0,
     0.5, 0.5, -0.5,          0.5, 1.0, 1.0,
     0.5, 0.5, 0.5,           0.5, 1.0, 1.0,
     -0.5, 0.5, 0.5,          0.5, 1.0, 1.0,
+
+    // -Y
+    -0.5, -0.5, -0.5,        0.5, 1.0, 0.5,
+    0.5, -0.5, -0.5,         0.5, 1.0, 0.5,
+    0.5, -0.5, 0.5,          0.5, 1.0, 0.5,
+    -0.5, -0.5, 0.5,         0.5, 1.0, 0.5,
   ];
 
   const indices = [
@@ -201,15 +203,15 @@ function drawLoop(now) {
   assets.cubeMesh.bind(assets.shader);
 
   const modelTransform = mat4.create();
-  mat4.translate(modelTransform, modelTransform, [3, 0, 0]);
-  mat4.rotateZ(modelTransform, modelTransform, rotationAngle);
-  mat4.rotateY(modelTransform, modelTransform, 0.273 * rotationAngle);
+  mat4.translate(modelTransform, modelTransform, [0, 0, -3]);
+  mat4.rotateY(modelTransform, modelTransform, rotationAngle);
+  mat4.rotateX(modelTransform, modelTransform, 0.273 * rotationAngle);
 
   const viewTransform = mat4.create();
   mat4.lookAt(viewTransform,
     /* eye position */ [0, 0, 0],
-    /* looking at */   [1, 0, 0],
-    /* up */           [0, 0, 1]);
+    /* looking at */   [0, 0, -1],
+    /* up */           [0, 1, 0]);
 
   const modelViewProjection = mat4.create();
   mat4.multiply(modelViewProjection, assets.projectionMatrix, viewTransform);
