@@ -234,7 +234,7 @@ function loadTexture() {
     texture.loaded = true;
   }
   image.crossOrigin = "anonymous";
-  image.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1000px-Google_%22G%22_Logo.svg.png";
+  image.src = "https://raw.githubusercontent.com/astrelni/webgl_samples/master/third_party/154.jpg";
 
   return texture;
 }
