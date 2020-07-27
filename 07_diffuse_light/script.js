@@ -219,10 +219,6 @@ function makeCubeMesh() {
   };
 }
 
-function isPowerOf2(value) {
-  return (value & (value - 1)) == 0;
-}
-
 function loadTexture() {
   const texture = {id: gl.createTexture(), loaded: false};
 
