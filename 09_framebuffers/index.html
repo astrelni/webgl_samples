@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>09 Framebuffers</title>
+    <script src="../third_party/gl-matrix.js"></script>
+    <script src="script.js"></script>
+    <style>
+      #gl-canvas {
+        display: block;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body onload="onLoad()">
+    <canvas id="gl-canvas" width="1024" height="1024"></canvas>
+    <div style="padding:10px;margin:auto;width:1024px">
+      <p> Blur Factor (values greater than 1 will have artifacting): </p>
+      0.0 <input type="range" min="0" max="2" value="0" step="0.01" id="blur-factor"> 2.0
+    </div>
+  </body>
+</html>
